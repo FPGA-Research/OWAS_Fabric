@@ -27,9 +27,9 @@ pdk::ihp-sg13cmos5l:
   TOP_MARGIN_MULT: 1
   BOTTOM_MARGIN_MULT: 1
   VERILOG_FILES:
-  - dir::../../FLUT51PSDM.v
-  - dir::../../FLUT51PSDM_switch_matrix.v
-  - dir::../../FLUT51PSDM_ConfigMem.v
+  - dir::../../tiles/b64mix_a48x16/FLUT51PSDM.v
+  - dir::../../tiles/b64mix_a48x16/FLUT51PSDM_switch_matrix.v
+  - dir::../../tiles/b64mix_a48x16/FLUT51PSDM_ConfigMem.v
   - dir::../../common/FLUT51PSDM_architecture.v
   - dir::../../common/MUX8LUT_frame_config_mux.v
   - dir::../../../../Fabric/models_pack.v
