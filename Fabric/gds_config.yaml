@@ -15,10 +15,10 @@ DRT_ANTENNA_REPAIR_ITERS: 0
 GRT_ALLOW_CONGESTION: True
 
 MAGIC_EXT_UNIQUE: notopports
-
+#DRT_OPT_ITERS: 1
 KLAYOUT_CONFLICT_RESOLUTION: "SkipNewCell"
 
-FABULOUS_HALO_SPACING: [ 1, 1, 1, 1 ]
+FABULOUS_HALO_SPACING: [ 15, 15, 1, 1 ]
 FABULOUS_TILE_SPACING: [ 0, 0 ]
 
 pdk::sky130A:
@@ -37,6 +37,13 @@ pdk::sky130A:
 
   RT_CLOCK_MAX_LAYER: "met4"
   RT_MAX_LAYER: "met4"
+
+pdk::ihp-sg13cmos5l:
+  # The stitch powers the fabric with Odb.FABulousPDN (copies the tile VPWR/VGND pins), so no PDN_* here.
+  # Stitch routing (edge pins across the halo) stays on Metal4 and below; TopMetal1 is left to the top level.
+  RT_MAX_LAYER: Metal4
+  RT_CLOCK_MAX_LAYER: Metal4
+  OPENROAD_THREADS: 12
 
 pdk::ihp-sg13g2:
   PDN_VERTICAL_LAYER: TopMetal1
