@@ -1,0 +1,4 @@
+[submodule "FABulous"]
+	path = FABulous
+	url = https://github.com/FPGA-Research/FABulous-OWAS.git
+	branch = MLFPGA
