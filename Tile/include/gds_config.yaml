@@ -78,15 +78,12 @@ pdk::ihp-sg13cmos5l:
   CELL_LIBS:
     nom_typ_1p20V_25C:
     - pdk_dir::libs.ref/sg13cmos5l_stdcell/lib/sg13cmos5l_stdcell_typ_1p20V_25C.lib
-    - pdk_dir::libs.ref/sg13cmos5l_io/lib/sg13cmos5l_io_typ_1p2V_3p3V_25C.lib
     - dir::../../../include/cmos5l/konrads_cells/lib/kip_smallcells_tt_1p20V_25C-doiacuxuzprmzndo7odyhfnjje.lib
     nom_fast_1p32V_m40C:
     - pdk_dir::libs.ref/sg13cmos5l_stdcell/lib/sg13cmos5l_stdcell_fast_1p32V_m40C.lib
-    - pdk_dir::libs.ref/sg13cmos5l_io/lib/sg13cmos5l_io_fast_1p32V_3p6V_m40C.lib
     - dir::../../../include/cmos5l/konrads_cells/lib/kip_smallcells_ff_1p32V_m40C-qfdaiz9qxigwpf5ifmgypthmmw.lib
     nom_slow_1p08V_125C:
     - pdk_dir::libs.ref/sg13cmos5l_stdcell/lib/sg13cmos5l_stdcell_slow_1p08V_125C.lib
-    - pdk_dir::libs.ref/sg13cmos5l_io/lib/sg13cmos5l_io_slow_1p08V_3p0V_125C.lib
     - dir::../../../include/cmos5l/konrads_cells/lib/kip_smallcells_ss_1p08V_125C-be98ciu9njdkxnjxp13rwwsrwc.lib
   CELL_LEFS:
   - pdk_dir::libs.ref/sg13cmos5l_stdcell/lef/sg13cmos5l_stdcell.lef
@@ -130,6 +127,7 @@ pdk::ihp-sg13cmos5l:
   DRT_SAVE_SNAPSHOTS: true
   DESIGN_REPAIR_BUFFER_INPUT_PORTS: false
   DESIGN_REPAIR_BUFFER_OUTPUT_PORTS: false
+  RSZ_DONT_TOUCH_RX: ".*clk_pass_buf.*|.*clk_leaf_buf.*"
   RUN_POST_GRT_DESIGN_REPAIR: false
   RUN_POST_GRT_RESIZER_TIMING: false
   PDN_MULTILAYER: false

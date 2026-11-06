@@ -298,6 +298,11 @@ def synthesize(
         "__pnr__",
     ]
 
+    # LibreLane passes the excluded cells as patterns, apply them as -dont_use.
+    lib_dont_use_args = []
+    for excluded_cell in extra["excluded_cell_patterns"]:
+        lib_dont_use_args.extend(("-dont_use", excluded_cell))
+
     blackbox_models = extra["blackbox_models"]
     libs = sorted(extra["libs_synth"], key=library_priority)
 
@@ -481,7 +486,7 @@ def synthesize(
     dfflibmap_args = []
     for lib in libs:
         dfflibmap_args.extend(["-liberty", lib])
-    d.run_pass("dfflibmap", *dfflibmap_args)
+    d.run_pass("dfflibmap", *dfflibmap_args, *lib_dont_use_args)
 
     d.tee("stat", "-json", *lib_arguments, o=os.path.join(report_dir, "post_dff.json"))
     d.tee("stat", *lib_arguments, o=os.path.join(report_dir, "post_dff.rpt"))
@@ -510,6 +515,7 @@ def synthesize(
             "-showtmp",
             *lib_arguments,
             *(["-dff"] if config["SYNTH_ABC_DFF"] else []),
+            *lib_dont_use_args,
         )
 
         if value := config.get("SYNTH_TIE_UNDEFINED"):

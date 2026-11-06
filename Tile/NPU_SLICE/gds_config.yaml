@@ -1,1 +1,7 @@
 DIE_AREA: [0, 0, 89.28, 460.32]  # find_min_width result (M4-only), 2026-10-28
+
+# Supertiles have no plain UserCLK port, so the clock ports are listed explicitly.
+pdk::ihp-sg13cmos5l:
+  CLOCK_PORT: [Tile_X0Y0_UserCLK, Tile_X0Y1_UserCLK]
+  PNR_SDC_FILE: dir::../../../include/supertile_clk.sdc
+  SIGNOFF_SDC_FILE: dir::../../../include/supertile_clk.sdc

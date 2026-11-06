@@ -29,7 +29,24 @@ module clk_buf (
     input  wire A,
     output wire X
 );
+`ifdef SYNTHESIS
+    // Explicit buffer cell, kept by RSZ_DONT_TOUCH_RX.
+    sg13cmos5l_buf_8 clk_pass_buf (.A(A), .X(X));
+`else
     assign X = A;
+`endif
+endmodule
+
+module clk_leaf_buf (
+    input  wire A,
+    output wire X
+);
+`ifdef SYNTHESIS
+    // Explicit buffer cell, kept by RSZ_DONT_TOUCH_RX.
+    sg13cmos5l_buf_4 clk_leaf_buf (.A(A), .X(X));
+`else
+    assign X = A;
+`endif
 endmodule
 
 module cus_mux41 (
