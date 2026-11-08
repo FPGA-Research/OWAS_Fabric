@@ -57,17 +57,27 @@ module SOC_DEBUG_CTRL_BEL #(
     // -------------------------------------------------------------------------
     // Outbound Launch Pipeline Registers (Fabric -> Manager/SoC: +1 Clock Cycle)
     // -------------------------------------------------------------------------
-    always @(posedge UserCLK) begin
-        DEBUG_IN    <= FAB_DEBUG_IN;
-        reg_usr_irq <= raw_fab_irq;
+    // UserCLK through 3 leaf buffers, 6 FFs each.
+    wire clk_l0, clk_l1, clk_l2;
+    clk_leaf_buf inst_clk_leaf0 (.A(UserCLK), .X(clk_l0));
+    clk_leaf_buf inst_clk_leaf1 (.A(UserCLK), .X(clk_l1));
+    clk_leaf_buf inst_clk_leaf2 (.A(UserCLK), .X(clk_l2));
+
+    always @(posedge clk_l0) begin
+        DEBUG_IN[5:0] <= FAB_DEBUG_IN[5:0];
+    end
+    always @(posedge clk_l1) begin
+        DEBUG_IN[7:6] <= FAB_DEBUG_IN[7:6];
+        reg_usr_irq   <= raw_fab_irq;
+        FAB_DEBUG_OUT[2:0] <= DEBUG_OUT[2:0];
     end
 
     // -------------------------------------------------------------------------
     // Inbound Capture Pipeline Registers (Manager -> Fabric: +1 Clock Cycle)
     // -------------------------------------------------------------------------
-    always @(posedge UserCLK) begin
-        FAB_DEBUG_OUT  <= DEBUG_OUT;
-        reg_soft_rst_n <= raw_asic_rst_n;
+    always @(posedge clk_l2) begin
+        FAB_DEBUG_OUT[7:3] <= DEBUG_OUT[7:3];
+        reg_soft_rst_n     <= raw_asic_rst_n;
     end
 
     // Direct / Bypassable Reset and IRQ lines

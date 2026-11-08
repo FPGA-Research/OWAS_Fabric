@@ -1,4 +1,8 @@
 [submodule "FABulous"]
 	path = FABulous
 	url = https://github.com/FPGA-Research/FABulous-OWAS.git
-	branch = MLFPGA
+	branch = main
+[submodule "Tile/FLUT51PSDM"]
+	path = Tile/FLUT51PSDM
+	url = https://github.com/hausdinge/FABulous-FLUT51PSDM-LIB.git
+	branch = OWAS_IHP

@@ -44,6 +44,14 @@ pdk::ihp-sg13cmos5l:
   RT_MAX_LAYER: Metal4
   RT_CLOCK_MAX_LAYER: Metal4
   OPENROAD_THREADS: 12
+  # Wide UserCLK spine; OpenRCX ignores the NDR width, so its extracted R is pessimistic.
+  NON_DEFAULT_RULES:
+    clk_spine:
+      width: ["*3"]
+      spacing: ["*2"]
+      via: null
+  DRT_ASSIGN_NDR:
+    "^UserCLK$": clk_spine
 
 pdk::ihp-sg13g2:
   PDN_VERTICAL_LAYER: TopMetal1

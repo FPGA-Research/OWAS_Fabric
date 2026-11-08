@@ -1,1 +1,7 @@
 DIE_AREA: [0, 0, 540.48, 75]
+
+# Supertiles have no plain UserCLK port, so the clock ports are listed explicitly.
+pdk::ihp-sg13cmos5l:
+  CLOCK_PORT: [Tile_X0Y0_UserCLK]
+  PNR_SDC_FILE: dir::../../../include/supertile_clk.sdc
+  SIGNOFF_SDC_FILE: dir::../../../include/supertile_clk.sdc

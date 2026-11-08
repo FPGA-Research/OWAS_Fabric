@@ -1,3 +1,8 @@
 DIE_AREA: [0, 0, 270.24, 75.180]
 PDN_HOFFSET: 2.132
 
+pdk::ihp-sg13cmos5l:
+  # No CTS, also not inside the TileAreaOptimisation loop.
+  RUN_CTS: false
+  FABULOUS_LOOP_SUBSTITUTE_STEPS:
+    OpenROAD.CTS: null
